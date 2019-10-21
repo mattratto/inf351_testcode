@@ -1,4 +1,3 @@
-@@ -0,0 +1,79 @@
 /*
  * INF351 Example Code 
  * Timesharing computer 
@@ -41,40 +40,25 @@ pinMode(BUTTON_C, INPUT_PULLUP);
 
 void loop()
 {
-//oled.clearDisplay();
-/*
-if(!digitalRead(BUTTON_A)) oled.print("A");
-if(!digitalRead(BUTTON_B)) oled.print("B");
-if(!digitalRead(BUTTON_C)) oled.print("C");
 
-buttonStateA = digitalRead(BUTTON_A);
-buttonStateB = digitalRead(BUTTON_B);
-buttonStateC = digitalRead(BUTTON_C); 
 
-// print the count value to the OLED
-oled.print("count: ");
-oled.println(count);
-
-  // update the display with the new count
-  oled.display();
-
- if (buttonStateA != lastButtonStateA) {
-    if (buttonStateA == LOW) {
-         count++;
-        }
-    } 
-  lastButtonStateA = buttonStateA;
-
-delay(100); 
-*/
-int item = menu(BUTTON_A,BUTTON_B); 
-
- if (item == 0) {
-  Serial.println("item 1"); 
- }else if (item == 1){
-  Serial.println("item 2");   
- }else if (item ==2) {
-  Serial.println("item 3");
- }
+switch (state) {
+  case 0:
+    oled.clearDisplay(); 
+    state = menu(BUTTON_A,BUTTON_B); 
+    break;
+  case 1:
+    oled.clearDisplay(); 
+    oled.println("item 2");
+    oled.display(); 
+    delay(1000);
+    break;
+  case 2:
+    oled.clearDisplay(); 
+    oled.println("item 3");
+    oled.display(); 
+    delay(1000); 
+    break;
+}
 
 }
