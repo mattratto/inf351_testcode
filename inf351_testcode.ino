@@ -72,7 +72,7 @@ switch (state) {
 }
 }
 
-int assignUsers(int num, String users[], String tasks[]) {
+void assignUsers(int num, String users[], String tasks[]) {
 
 for (int i=0; i<num; i++) {
 
@@ -82,7 +82,6 @@ oled.print("select task for user:");
 oled.print(users[i]);
 oled.display(); 
 delay(1000); 
-userTask[i]=menu(BUTTON_A,BUTTON_B,tasks);
-Serial.print(userTask[i]);   
+userTask[i]=menu(BUTTON_A,BUTTON_B,tasks); 
 }
 }
