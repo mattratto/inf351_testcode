@@ -39,3 +39,14 @@ int menu(int BUTTON_A, int BUTTON_B, String items[]) {
     while (digitalRead(BUTTON_A) == LOW) {}
 return menuItem; 
 }
+
+int assignUsers(int num, String users[], String tasks[]) {
+  oled.clearDisplay();
+  oled.setCursor(0,0); 
+  oled.print("select task for user:"); 
+  oled.print(users[num]);
+  oled.display(); 
+  delay(1000); 
+  int x = menu(9,6,tasks);
+  return x;  
+}

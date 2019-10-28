@@ -48,8 +48,10 @@ void loop()
 
 switch (state) {
   case 0:
-    oled.clearDisplay(); 
-    assignUsers(userNum, users, tasks); 
+    for (int i=0; i<userNum; i++) {
+    oled.clearDisplay();
+    userTask[i] = assignUsers(i, users, tasks); 
+    }
     state = 1;
     break;
   case 1:
@@ -69,19 +71,5 @@ switch (state) {
     //not in use 
     delay(1000); 
     break;
-}
-}
-
-void assignUsers(int num, String users[], String tasks[]) {
-
-for (int i=0; i<num; i++) {
-
-oled.clearDisplay();
-oled.setCursor(0,0); 
-oled.print("select task for user:"); 
-oled.print(users[i]);
-oled.display(); 
-delay(1000); 
-userTask[i]=menu(BUTTON_A,BUTTON_B,tasks); 
 }
 }
