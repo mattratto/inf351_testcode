@@ -9,6 +9,8 @@ int menu(int BUTTON_A, int BUTTON_B, String items[]) {
   oled.print(items[1]); 
   oled.setCursor(0,20);
   oled.print(items[2]); 
+  oled.drawRect(0,0,128,10,WHITE);
+  oled.drawRect(0,20,128,10,BLACK);
   oled.display();
   //move up and down using button B and select with button a
   while (digitalRead(BUTTON_A) == HIGH) {

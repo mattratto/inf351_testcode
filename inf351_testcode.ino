@@ -28,7 +28,7 @@ int userNum = 3;
 String users[] = {"Matt", "Tim", "Nick"}; 
 String tasks[] = {"Wash dishes", "Vacuum floor", "Tidy living room"}; 
 
-int userTask[2][3] = {{0, 1, 2}, {0, 0, 0}};
+int userTask[3];
 
 void setup()
 {
@@ -46,24 +46,27 @@ pinMode(BUTTON_C, INPUT_PULLUP);
 void loop()
 {
 
-delay(1000); 
-Serial.println("showing numbers"); 
-
 switch (state) {
   case 0:
     oled.clearDisplay(); 
-    assignUsers(3, users, tasks); 
+    assignUsers(userNum, users, tasks); 
+    state = 1;
     break;
   case 1:
-    oled.clearDisplay(); 
-    oled.println("item 2");
+    for (int i=0; i<userNum; i++) {
+    oled.clearDisplay();
+    oled.setCursor(0,0); 
+    oled.print(users[i]);
+    oled.print(" is assigned to task: ");
+    oled.print(tasks[userTask[i]]); 
     oled.display(); 
-    delay(1000);
+    while (digitalRead(BUTTON_A) == HIGH) {delay(10);}
+    while (digitalRead(BUTTON_A) == LOW) {delay(10);}
+    }
+    state =0; 
     break;
   case 2:
-    oled.clearDisplay(); 
-    oled.println("item 3");
-    oled.display(); 
+    //not in use 
     delay(1000); 
     break;
 }
@@ -78,9 +81,8 @@ oled.setCursor(0,0);
 oled.print("select task for user:"); 
 oled.print(users[i]);
 oled.display(); 
-delay(5000); 
-userTask[i],menu(BUTTON_A,BUTTON_B,tasks);  
-
+delay(1000); 
+userTask[i]=menu(BUTTON_A,BUTTON_B,tasks);
+Serial.print(userTask[i]);   
 }
-
 }
