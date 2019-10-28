@@ -1,4 +1,5 @@
 int menu(int BUTTON_A, int BUTTON_B, String items[]) { 
+  oled.clearDisplay(); 
   int buttonStateB;
   int lastButtonStateB; 
   int menuItem = 0;  

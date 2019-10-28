@@ -26,8 +26,9 @@ bool buttonStateC;
 
 int userNum = 3; 
 String users[] = {"Matt", "Tim", "Nick"}; 
-int taskNum = 3; 
 String tasks[] = {"Wash dishes", "Vacuum floor", "Tidy living room"}; 
+
+int userTask[2][3] = {{0, 1, 2}, {0, 0, 0}};
 
 void setup()
 {
@@ -45,6 +46,8 @@ pinMode(BUTTON_C, INPUT_PULLUP);
 void loop()
 {
 
+delay(1000); 
+Serial.println("showing numbers"); 
 
 switch (state) {
   case 0:
@@ -64,21 +67,20 @@ switch (state) {
     delay(1000); 
     break;
 }
-
 }
 
 int assignUsers(int num, String users[], String tasks[]) {
 
-Serial.print("User selected:"); 
-Serial.println(menu(BUTTON_A,BUTTON_B, users)); 
-Serial.print("Task selected:"); 
-Serial.println(menu(BUTTON_A,BUTTON_B, tasks)); 
-
-
 for (int i=0; i<num; i++) {
 
-Serial.print(users[i]); 
+oled.clearDisplay();
+oled.setCursor(0,0); 
+oled.print("select task for user:"); 
+oled.print(users[i]);
+oled.display(); 
+delay(5000); 
+userTask[i],menu(BUTTON_A,BUTTON_B,tasks);  
 
-  
 }
+
 }
