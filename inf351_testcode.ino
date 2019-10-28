@@ -26,9 +26,10 @@ bool buttonStateC;
 
 int userNum = 3; 
 String users[] = {"Matt", "Tim", "Nick"}; 
-String tasks[] = {"Wash dishes", "Vacuum floor", "Tidy living room"}; 
-
-int userTask[3];
+String tasks1[] = {"Wash dishes", "Vacuum floor", "Tidy living room"}; 
+String tasks2[] = {"take out the garbage", "mop", "mow the lawn"}; 
+int userTask1[3];
+int userTask2[3];
 
 void setup()
 {
@@ -50,7 +51,8 @@ switch (state) {
   case 0:
     for (int i=0; i<userNum; i++) {
     oled.clearDisplay();
-    userTask[i] = assignUsers(i, users, tasks); 
+    userTask1[i] = assignUsers(i, users, tasks1); 
+    userTask2[i] = assignUsers(i, users, tasks2); 
     }
     state = 1;
     break;
@@ -60,7 +62,8 @@ switch (state) {
     oled.setCursor(0,0); 
     oled.print(users[i]);
     oled.print(" is assigned to task: ");
-    oled.print(tasks[userTask[i]]); 
+    oled.print(tasks1[userTask1[i]]); 
+    oled.print(tasks2[userTask2[i]]); 
     oled.display(); 
     while (digitalRead(BUTTON_A) == HIGH) {delay(10);}
     while (digitalRead(BUTTON_A) == LOW) {delay(10);}
