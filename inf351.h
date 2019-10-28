@@ -1,13 +1,13 @@
-int menu(int BUTTON_A, int BUTTON_B) { 
+int menu(int BUTTON_A, int BUTTON_B, String items[]) { 
   int buttonStateB;
   int lastButtonStateB; 
   int menuItem = 0;  
   oled.setCursor(0,0);
-  oled.print("Menu 1"); 
+  oled.print(items[0]); 
   oled.setCursor(0,10);
-  oled.print("Menu 2"); 
+  oled.print(items[1]); 
   oled.setCursor(0,20);
-  oled.print("Menu 3"); 
+  oled.print(items[2]); 
   oled.display();
   //move up and down using button B and select with button a
   while (digitalRead(BUTTON_A) == HIGH) {
@@ -33,5 +33,6 @@ int menu(int BUTTON_A, int BUTTON_B) {
       }
     lastButtonStateB = buttonStateB; 
     }
+    while (digitalRead(BUTTON_A) == LOW) {}
 return menuItem; 
 }

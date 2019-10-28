@@ -24,6 +24,10 @@ bool buttonStateA;
 bool buttonStateB; 
 bool buttonStateC; 
 
+int userNum = 3; 
+String users[] = {"Matt", "Tim", "Nick"}; 
+int taskNum = 3; 
+String tasks[] = {"Wash dishes", "Vacuum floor", "Tidy living room"}; 
 
 void setup()
 {
@@ -45,7 +49,7 @@ void loop()
 switch (state) {
   case 0:
     oled.clearDisplay(); 
-    state = menu(BUTTON_A,BUTTON_B); 
+    assignUsers(3, users, tasks); 
     break;
   case 1:
     oled.clearDisplay(); 
@@ -61,4 +65,20 @@ switch (state) {
     break;
 }
 
+}
+
+int assignUsers(int num, String users[], String tasks[]) {
+
+Serial.print("User selected:"); 
+Serial.println(menu(BUTTON_A,BUTTON_B, users)); 
+Serial.print("Task selected:"); 
+Serial.println(menu(BUTTON_A,BUTTON_B, tasks)); 
+
+
+for (int i=0; i<num; i++) {
+
+Serial.print(users[i]); 
+
+  
+}
 }
