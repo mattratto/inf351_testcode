@@ -85,6 +85,8 @@ void setup()
   Serial.println();
 
   ble.verbose(false);  // debug info is a little annoying after this point!
+  ble.sendCommandCheckOK("AT+GAPDEVNAME=mydevice");
+
 
   /* Wait for connection */
   while (! ble.isConnected()) {
@@ -150,16 +152,18 @@ switch (state) {
     state =2; 
     break;
   case 2:
-    // Check for user input
-  char n, inputs[BUFSIZE+1];
-
-buttonStateA = digitalRead(BUTTON_A);
+   char n;
+   char inputs[BUFSIZE+1];  
+   buttonStateA = digitalRead(BUTTON_A);
     if (buttonStateA != lastButtonStateA) {
       if (buttonStateA == LOW) { 
-      ble.print(tasks1[userTask1[0]]);  
+      ble.print(tasks1[userTask1[0]]);
+      Serial.println("verifying that reaching case 2");   
+      ble.print("msg sent");
+      delay(1000); 
       }
       }
-    lastButtonStateB = buttonStateB; 
+    lastButtonStateA = buttonStateA; 
     
   if (Serial.available())
   {
